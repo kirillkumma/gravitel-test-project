@@ -1,0 +1,19 @@
+fragment AllFields on Statistic {
+  active
+  inactive
+  completed
+}
+
+query Dashboard {
+  dashboard {
+    scenarios {
+      ...AllFields
+    }
+    lists {
+      ...AllFields
+    }
+    dialogs {
+      ...AllFields
+    }
+  }
+}
