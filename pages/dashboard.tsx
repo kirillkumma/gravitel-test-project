@@ -1,8 +1,7 @@
 import { FC, useMemo, useEffect } from 'react'
-import { NetworkStatus } from '@apollo/client'
 
 import { useDashboardQuery } from 'generated'
-import { Chart } from 'components'
+import { Chart, Spinner } from 'components'
 
 const LABELS: [string, string, string] = [
   'Активные',
@@ -11,7 +10,8 @@ const LABELS: [string, string, string] = [
 ]
 
 const DashboardPage: FC = () => {
-  const { data, error, startPolling, stopPolling } = useDashboardQuery()
+  const { data, error, startPolling, stopPolling, loading } =
+    useDashboardQuery()
 
   useEffect(() => {
     startPolling(5000)
@@ -47,6 +47,14 @@ const DashboardPage: FC = () => {
       ] as [number, number, number]
     }
   }, [data?.dashboard?.dialogs])
+
+  if (loading) {
+    return (
+      <div className="fixed top-0 left-0 right-0 h-screen flex items-center justify-center">
+        <Spinner />
+      </div>
+    )
+  }
 
   return (
     <div className="max-w-5xl mx-auto grid grid-flow-row gap-8">

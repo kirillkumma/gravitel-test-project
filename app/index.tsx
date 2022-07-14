@@ -1,11 +1,18 @@
-import { FC, useEffect } from 'react'
+import { FC, useEffect, Suspense } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useMeQuery } from 'generated'
+import { Spinner } from 'components'
 
 import './index.css'
 import { Routes } from './routes'
 import { URLs } from './urls'
+
+const loadingScreen = (
+  <div className="h-screen flex items-center justify-center">
+    <Spinner />
+  </div>
+)
 
 export const App: FC = () => {
   const { data, error, loading } = useMeQuery()
@@ -20,8 +27,12 @@ export const App: FC = () => {
   }, [data, error])
 
   if (loading) {
-    return null
+    return loadingScreen
   }
 
-  return <Routes />
+  return (
+    <Suspense fallback={loadingScreen}>
+      <Routes />
+    </Suspense>
+  )
 }
