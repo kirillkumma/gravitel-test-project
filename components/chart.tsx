@@ -27,6 +27,7 @@ export const Chart: FC<ChartProps> = (props) => {
     <div className="grid grid-flow-row gap-4">
       <div className="relative">
         <Doughnut
+          className="max-w-full"
           ref={ref}
           options={{
             cutout: '90%',

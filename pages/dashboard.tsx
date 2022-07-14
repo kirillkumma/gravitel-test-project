@@ -50,7 +50,7 @@ const DashboardPage: FC = () => {
   return (
     <div className="max-w-5xl mx-auto grid grid-flow-row gap-8">
       <h1 className="text-4xl">Сводка</h1>
-      <div className="grid grid-cols-3 gap-16">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-16">
         {scenariosData && (
           <div>
             <Chart data={scenariosData} labels={LABELS} title="Сценарии" />
