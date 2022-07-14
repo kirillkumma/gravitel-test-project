@@ -14,9 +14,7 @@ export const App = () => {
   useEffect(() => {
     if (error) {
       navigate(URLs.LOGIN)
-    }
-
-    if (data?.me?.username) {
+    } else if (data?.me?.username) {
       navigate(URLs.DASHBOARD)
     }
   }, [data, error])
