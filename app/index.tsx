@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useMeQuery } from 'generated'
@@ -7,7 +7,7 @@ import './index.css'
 import { Routes } from './routes'
 import { URLs } from './urls'
 
-export const App = () => {
+export const App: FC = () => {
   const { data, error, loading } = useMeQuery()
   const navigate = useNavigate()
 

@@ -1,9 +1,10 @@
+import { FC } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useApolloClient } from '@apollo/client'
 
 import { useMeQuery } from 'generated'
 
-export const BaseLayout = () => {
+export const BaseLayout: FC = () => {
   const client = useApolloClient()
   const { data } = useMeQuery()
 

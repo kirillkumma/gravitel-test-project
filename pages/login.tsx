@@ -1,10 +1,10 @@
-import { useState, ChangeEventHandler, FormEventHandler } from 'react'
+import { FC, useState, ChangeEventHandler, FormEventHandler } from 'react'
 import { useApolloClient } from '@apollo/client'
 
 import { Input, Button } from 'components'
 import { useLoginMutation } from 'generated'
 
-const LoginPage = () => {
+const LoginPage: FC = () => {
   const [form, setForm] = useState({ username: '', password: '' })
   const client = useApolloClient()
   const [login, { loading, error }] = useLoginMutation({

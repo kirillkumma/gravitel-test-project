@@ -1,4 +1,4 @@
-import { lazy } from 'react'
+import { FC, lazy } from 'react'
 import { Routes as _Routes, Route } from 'react-router-dom'
 
 import { AuthLayout, BaseLayout } from 'layouts'
@@ -8,7 +8,7 @@ import { URLs } from './urls'
 const LoginPage = lazy(() => import('pages/login'))
 const DashboardPage = lazy(() => import('pages/dashboard'))
 
-export const Routes = () => {
+export const Routes: FC = () => {
   return (
     <_Routes>
       <Route element={<AuthLayout />}>
