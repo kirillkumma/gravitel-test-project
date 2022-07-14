@@ -1,4 +1,5 @@
 import { FC, useMemo, useEffect } from 'react'
+import { NetworkStatus } from '@apollo/client'
 
 import { useDashboardQuery } from 'generated'
 import { Chart } from 'components'
@@ -10,7 +11,7 @@ const LABELS: [string, string, string] = [
 ]
 
 const DashboardPage: FC = () => {
-  const { data, startPolling, stopPolling } = useDashboardQuery()
+  const { data, error, startPolling, stopPolling } = useDashboardQuery()
 
   useEffect(() => {
     startPolling(5000)
@@ -50,6 +51,12 @@ const DashboardPage: FC = () => {
   return (
     <div className="max-w-5xl mx-auto grid grid-flow-row gap-8">
       <h1 className="text-4xl">Сводка</h1>
+      {error && (
+        <p className="text-red-500">
+          Произошла ошибка при загрузке данных. Проверьте, что вы имеете
+          подключение к интернету, и перезагрузите страницу
+        </p>
+      )}
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-16">
         {scenariosData && (
           <div>
