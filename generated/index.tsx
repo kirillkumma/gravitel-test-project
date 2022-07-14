@@ -76,7 +76,7 @@ export type DashboardQuery = { __typename?: 'Query', dashboard?: { __typename?: 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', username: string, token?: string | null } | null };
+export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', username: string } | null };
 
 export type LoginMutationVariables = Exact<{
   username: Scalars['String'];
@@ -84,7 +84,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'User', username: string, token?: string | null } | null };
+export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'User', token?: string | null } | null };
 
 export const AllFieldsFragmentDoc = gql`
     fragment AllFields on Statistic {
@@ -139,7 +139,6 @@ export const MeDocument = gql`
     query Me {
   me {
     username
-    token
   }
 }
     `;
@@ -173,7 +172,6 @@ export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
 export const LoginDocument = gql`
     mutation Login($username: String!, $password: String!) {
   login(username: $username, password: $password) {
-    username
     token
   }
 }
